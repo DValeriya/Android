@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Солнечная система</string>
+    <string name="start">Начать</string>
+    <string name="textInSecondActivity">Узнай больше о галактике, выбрав планету:</string>
+    <string name="planet_name">Название планеты</string>
+    <string name="data">Данные: </string>
+    <string name="generalInfo">Общие сведения: </string>
+    <string name="apply">Подтвердить</string>
+    <string name="link">Узнай больше</string>
+</resources>
+
