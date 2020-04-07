@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -13,71 +14,49 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class CarAdapter extends RecyclerView.Adapter<CarAdapter.CarHolder> {
+public class CarAdapter extends BaseAdapter {
     private List<Car> list;
 
     public CarAdapter(List<Car> list) {
         this.list = list;
     }
 
-    @NonNull
     @Override
-    public CarAdapter.CarHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.car_item, parent, false);
-        return new CarHolder(view);
-    }
-
-    @Override
-    public void onBindViewHolder(@NonNull CarHolder holder, int position) {
-        Car car = list.get(position);
-        holder.getCarName().setText(car.getName());
-        holder.getCarPrice().setText(car.getPrice());
-        holder.getCity().setText(car.getCity());
-        holder.getPhoto().setImageResource(car.getPhoto());
-    }
-
-    @Override
-    public int getItemCount() {
+    public int getCount() {
         return list.size();
     }
 
+    @Override
+    public Object getItem(int i) {
+        return null;
+    }
 
-    class CarHolder extends RecyclerView.ViewHolder {
-        private ImageView photo;
-        private TextView carName;
-        private TextView carPrice;
-        private TextView city;
+    @Override
+    public long getItemId(int i) {
+        return 0;
+    }
 
-        public CarHolder(@NonNull View itemView) {
-            super(itemView);
+    @Override
+    public View getView(int i, View view, ViewGroup viewGroup) {
+        if(view == null)
+            view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.car_item, viewGroup, false);
 
-            photo = itemView.findViewById(R.id.car_img);
-            carName = itemView.findViewById(R.id.car_name);
-            carPrice = itemView.findViewById(R.id.car_price);
-            city = itemView.findViewById(R.id.car_city);
+        ImageView photo = view.findViewById(R.id.car_img);
+        TextView carName = view.findViewById(R.id.car_name);
+        TextView carPrice = view.findViewById(R.id.car_price);
+        TextView city = view.findViewById(R.id.car_city);
 
-            itemView.setOnClickListener(view -> {
-                Context context = view.getContext();
-                Intent intent = new Intent(context, CarDetailsActivity.class);
-                intent.putExtra("car", list.get(getAdapterPosition()));
-                context.startActivity(intent);
-            });
-        }
+        photo.setImageResource(list.get(i).getPhoto());
+        carName.setText(list.get(i).getName());
+        carPrice.setText(list.get(i).getPrice());
+        city.setText(list.get(i).getCity());
 
-        public ImageView getPhoto() {
-            return photo;
-        }
-
-        public TextView getCarName() {
-            return carName;
-        }
-
-        public TextView getCarPrice() {
-            return carPrice;
-        }
-
-        public TextView getCity() {
-            return city;
-        }
+        view.setOnClickListener(v -> {
+            Context context = v.getContext();
+            Intent intent = new Intent(context, CarDetailsActivity.class);
+            intent.putExtra("car", list.get(i));
+            context.startActivity(intent);
+        });
+        return view;
     }
 }

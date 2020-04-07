@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,10 +30,7 @@ public class MainActivity extends AppCompatActivity {
         carList.add(new Car("BMW", "$4300", "Odessa", R.drawable.car_img3, "Some text Some text Some text Some text Some text Some text Some textSome textSome text"));
         carList.add(new Car("Dodge", "$6500", "New York", R.drawable.car_img1, "Some text Some text Some text Some text Some text Some text Some textSome textSome text"));
 
-        RecyclerView recyclerView = findViewById(R.id.car_list);
-
-        GridLayoutManager layoutManager = new GridLayoutManager(this, 2, RecyclerView.VERTICAL, false);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(new CarAdapter(carList));
+        ListView listView = findViewById(R.id.car_list);
+        listView.setAdapter(new CarAdapter(carList));
     }
 }
