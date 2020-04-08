@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Laba_04</string>
+    <string name="nursery">Nursery</string>
+    <string name="petShop">Pet Shop</string>
+    <string name="vetClinic">Vet Clinic</string>
+    <string name="description">There you find all for your pets</string>
+</resources>
